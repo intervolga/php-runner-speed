@@ -37,6 +37,10 @@ url: apache-127-0-0-1.nip.io:8080
 
 `docker compose -f compose.yml -f compose.fpm.yml -f compose.init.yml up -d --build`
 
+
+Для генерации товаров
+`php artisan db:seed --class=ProductSeeder --force && php artisan generate:product-links`
+
 После скопировать содержимое app/storage/product_links.txt в tank/uris.txt
 
 При тестировании Yandex tank необходимо заменить Host в tank/load.yaml на тестируемый.
@@ -52,14 +56,14 @@ pw: `admin123`
 
 ## Результаты тестов
 
-| Сервер              | AVG CPU (%)   | AVG RAM (mb)    | AVG RPS              | Результат yandex tank    |
-|---------------------|---------------|-----------------|----------------------|--------------------------|
-| fpm                 | 81            | 3106,763063     | 39.10113393459943    | https://clck.ru/3DaTdo   |
-| franken             | 44            | 856,7777778     | 115.93016905966681   | https://clck.ru/3DWrG5   |
-| RoadRunner          | 46            | 549,4125        | 118.82664528965924   | https://clck.ru/3DWuTX   |
-| swoole              | 41            | 716,7181818     | 127.51062587535598   | https://clck.ru/3DWta8   |
-| Nginx unit          | 90            | 887,0657627     | 37.85367205699279    | https://clck.ru/3DYPcg   |
-| Apache mod_php      | 80            | 5070,229699     | 35.102209383571086   | https://clck.ru/3DaNS3   |
+| Сервер         | AVG CPU (%) | AVG RAM (mb) | AVG RPS | Результат yandex tank  |
+|----------------|-------------|--------------|---------|------------------------|
+| fpm            | 87          | 3500         | 37.3    | https://clck.ru/3Dbnig |
+| franken        | 68          | 954          | 140.7   | https://clck.ru/3DbqLi |
+| RoadRunner     | 60          | 638          | 131.5   | https://clck.ru/3DbpkP |
+| swoole         | 45          | 752          | 152.5   | https://clck.ru/3DbnXQ |
+| Nginx unit     | 87          | 2384         | 39.1    | https://clck.ru/3DbpLp |
+| Apache mod_php | 89          | 5277         | 37.5    | https://clck.ru/3DboQw |
 
 
 ### График использования CPU

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
-composer install && php artisan migrate && php artisan db:seed && php artisan vendor:publish --all && php artisan storage:link && php artisan key:generate \
-  && php artisan cache:clear && php artisan config:clear  \
-  && yes | php artisan octane:install --server=roadrunner && yes | php artisan octane:install --server=swoole && php artisan db:seed --class=ProductSeeder && php artisan generate:product-links
+composer install && composer update && php artisan migrate --force && php artisan db:seed --force \
+  && php artisan cache:clear && php artisan config:clear \
+  && php artisan optimize \
+  && yes | php artisan octane:install --server=roadrunner && yes | php artisan octane:install --server=swoole \
+  && php artisan vendor:publish --all --force && php artisan storage:link --force && php artisan key:generate --force

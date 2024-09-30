@@ -12,7 +12,7 @@ phantom:
   ammofile: uris.txt
   load_profile:
     load_type: rps
-    schedule: line(10, 300, 60s) const(100, 60s)
+    schedule: line(10, 300, 60s) const(150, 60s)
   instances: 300
   ssl: false
 autostop:
