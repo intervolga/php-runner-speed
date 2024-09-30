@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  php-unit:
+    build:
+      context: ./php/
+      dockerfile: unit/Dockerfile
+    platform: linux/x86_64
+    user: "1000:1000"
+    ports:
+      - 8081:80
+    volumes:
+      - ./app:/www
+    depends_on:
+      - database_server
+    environment:
+      - APP_URL=unit-127-0-0-1.nip.io:8081
+    healthcheck:
+      test: curl --fail http://localhost:80 || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 10s

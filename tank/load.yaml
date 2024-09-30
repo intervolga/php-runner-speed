@@ -1,0 +1,25 @@
+overload:
+  enabled: true
+  package: yandextank.plugins.DataUploader
+  token_file: "token.txt"
+phantom:
+  address: 127.0.0.1:8080
+  header_http: "1.1"
+  headers:
+    - "[Host: fpm-127-0-0-1.nip.io]"
+    - "[Port: 8080]"
+  ammo_type: uri
+  ammofile: uris.txt
+  load_profile:
+    load_type: rps
+    schedule: line(10, 300, 60s) const(100, 60s)
+  instances: 300
+  ssl: false
+autostop:
+  autostop:
+    - http(5xx,100%,1s)
+    - net(xx,5,10)
+console:
+  enabled: true
+telegraf:
+  enabled: false

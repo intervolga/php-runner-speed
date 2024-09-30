@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  init:
+    build:
+      context: ./php/fpm/
+    platform: linux/x86_64
+    user: "1000:1000"
+    volumes:
+      - ./app:/var/www/html
+      - ./install_bagisto.sh:/var/www/html/install_bagisto.sh
+    entrypoint: "/var/www/html/install_bagisto.sh"
+    depends_on:
+      - database_server

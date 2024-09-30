@@ -1,0 +1,44 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+    },
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "/themes/shop/default/build/assets/*"
+                ]
+            },
+            "action": {
+                "share": "/www/public$uri"
+            }
+        },
+        {
+            "match": {
+                "uri": "!/index.php"
+            },
+            "action": {
+                "share":"/www/public$uri",
+                "fallback":{
+                    "pass":"applications/php_app"
+                }
+            }
+        }
+    ],
+    "applications": {
+        "php_app": {
+            "type": "php",
+            "root": "/www/public",
+            "script": "index.php",
+            "user": "www-data",
+            "group": "www-data",
+            "processes": {
+                "max": 64,
+                "spare": 16,
+                "idle_timeout": 30
+            }
+        }
+    }
+}

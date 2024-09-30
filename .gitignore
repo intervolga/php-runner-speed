@@ -1,0 +1,7 @@
+.log
+tank/logs
+.idea
+/dbvolume
+*.log
+*.txt
+/glances/glances.csv
