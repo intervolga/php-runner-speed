@@ -6,6 +6,8 @@ RUN apt-get update \
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
 COPY ./z_custom.ini /usr/local/etc/php/conf.d/z_custom.ini
 
 RUN sed -i 's/80/8888/' /etc/apache2/ports.conf
